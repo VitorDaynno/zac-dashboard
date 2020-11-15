@@ -1,0 +1,15 @@
+body {
+  background: url('../images/backgroud.jpg');
+  background-size: 120%;
+  overflow-y: hidden;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 768px) {
+  body {
+    background: url('../images/backgroud.jpg');
+    background-repeat: no-repeat;
+    background-size: 460%;
+    background-position-y: center;
+  }
+}

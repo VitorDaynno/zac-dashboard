@@ -1,0 +1,25 @@
+.column {
+  min-width: 28vw;
+  margin-right: 20px;
+}
+
+.column-card {
+  border-radius: 2px;
+  max-height: 77vh;
+  overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .column {
+    min-width: 80vw;
+  }
+}
+
+@media (min-width: 1200px) {
+  .column {
+    min-width: 20vw;
+  }
+  .column-card {
+    max-height: 83vh;
+  }
+}

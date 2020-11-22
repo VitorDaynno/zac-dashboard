@@ -13,14 +13,16 @@ function Dashboard() {
   const [isRefresh, setIsRefresh] = useState(0);
 
   const columns = [
-    { name: 'Atrasados', filter: `?end_date=${moment().format()}` },
+    { id: 1, name: 'Atrasados', filter: `?end_date=${moment().format()}` },
     {
+      id: 2,
       name: 'Hoje',
       filter: `?start_date=${moment()
         .startOf('day')
         .format()}&end_date=${moment().endOf('day').format()}`,
     },
     {
+      id: 3,
       name: 'Amanhã',
       filter: `?start_date=${moment()
         .add(1, 'days')
@@ -28,6 +30,7 @@ function Dashboard() {
         .format()}&end_date=${moment().add(1, 'days').endOf('day').format()}`,
     },
     {
+      id: 4,
       name: 'Semana',
       filter: `?start_date=${moment()
         .add(2, 'days')
@@ -35,6 +38,7 @@ function Dashboard() {
         .format()}&end_date=${moment().add(1, 'week').endOf('day').format()}`,
     },
     {
+      id: 5,
       name: 'Mês',
       filter: `?start_date=${moment()
         .add(1, 'week')
@@ -42,6 +46,7 @@ function Dashboard() {
         .format()}&end_date=${moment().add(1, 'month').endOf('day').format()}`,
     },
     {
+      id: 6,
       name: 'Ano',
       filter: `?start_date=${moment()
         .add(1, 'month')
@@ -97,8 +102,14 @@ function Dashboard() {
         </h3>
       </div>
       <div className="columns">
-        {columns.map(({ name, filter }) => (
-          <Column title={name} filter={filter} isRefresh={isRefresh} />
+        {columns.map(({ id, name, filter }) => (
+          <Column
+            key={id}
+            title={name}
+            filter={filter}
+            isRefresh={isRefresh}
+            setIsRefresh={setIsRefresh}
+          />
         ))}
       </div>
     </div>

@@ -1,18 +1,18 @@
-import React from 'react';
+import React from "react";
 
-import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { HiOutlineMail } from 'react-icons/hi';
-import { FaGithub } from 'react-icons/fa';
-import axios from 'axios';
-import M from 'materialize-css';
+import { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { HiOutlineMail } from "react-icons/hi";
+import { FaGithub } from "react-icons/fa";
+import axios from "axios";
+import M from "materialize-css";
 
-import zac from './images/zac.png';
+import zac from "./images/zac.png";
 
 function Login() {
   const history = useHistory();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const onChangeEmail = (e) => {
     const { value } = e.target;
@@ -24,10 +24,17 @@ function Login() {
     setPassword(value);
   };
 
+  const handleKeyDown = (event) => {
+    const { key } = event;
+    if (key === 'Enter') {
+      login()
+    }
+  }
+
   const login = async () => {
     try {
-      if (email === '' || password === '') {
-        const error = { message: 'Informe todos os campos requeridos' };
+      if (email === "" || password === "") {
+        const error = { message: "Informe todos os campos requeridos" };
         throw error;
       }
 
@@ -37,32 +44,32 @@ function Login() {
       const { data } = response;
       const { token } = data;
 
-      localStorage.setItem('token', token);
-      M.toast({ html: 'Login com sucesso', classes: 'green' });
-      history.push('/dashboard');
+      localStorage.setItem("token", token);
+      M.toast({ html: "Login com sucesso", classes: "green" });
+      history.push("/dashboard");
     } catch (error) {
-      let messageUser = 'Um erro ocorreu';
+      let messageUser = "Um erro ocorreu";
       const { response } = error;
 
       if (response) {
         const { status } = response;
         if (status === 401) {
-          messageUser = 'Email ou senhas requeridos';
+          messageUser = "Email ou senhas requeridos";
         }
         if (status === 422) {
-          messageUser = 'Informe todos os campos requeridos';
+          messageUser = "Informe todos os campos requeridos";
         }
       } else {
         const { message } = error;
         messageUser = message;
       }
 
-      M.toast({ html: messageUser, classes: 'red' });
+      M.toast({ html: messageUser, classes: "red" });
     }
   };
 
   return (
-    <div className="login row">
+    <div className="login row" onKeyDown={handleKeyDown}>
       <div className="card col s10 offset-s1 l6 offset-l3 xl4 offset-xl4">
         <div className="center">
           <img src={zac} alt="zac" className="logo" />
@@ -102,20 +109,25 @@ function Login() {
       </div>
       <footer class="col s12 footer">
         <div class="container center">
-          <div className="col s12 m6 contacts">
+          <div className="col s12 contacts">
+            <span>Desenvolvido por:</span>
+          </div>
+          <div className="col s12 contacts">
             <FaGithub />
             <a
               href="https://github.com/VitorDaynno"
               target="_blank"
               rel="noopener noreferrer"
+              className="contact-label"
             >
-              {' '}
-              VitorDaynno
+              Vítor Daynno
             </a>
           </div>
-          <div className="col s12 m6 center contacts">
+          <div className="col s12 contacts">
             <HiOutlineMail />
-            <a href="mailto:vitordaynno@gmail"> vitordaynno@gmail.com </a>
+            <a href="mailto:vitordaynno@gmail" className="contact-label">
+              vitordaynno@gmail.com
+            </a>
           </div>
         </div>
       </footer>

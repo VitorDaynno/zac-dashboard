@@ -1,14 +1,15 @@
 .contacts {
-  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-label {
+  margin-left: 5px;
 }
 
 .footer {
-  margin-top: 13%;
-  background-color: rgb(255, 255, 255, 0.4);
-  height: 50px;
-  border-top-color: rgb(0, 0, 0, 0.4);
-  border-top-style: solid;
-  border-width: 1px;
+  margin-top: 8vh;
 }
 
 .input-pad {
@@ -17,7 +18,7 @@
 }
 
 .login {
-  margin-top: 10%;
+  margin-top: 7%;
 }
 
 .option {
@@ -34,18 +35,20 @@
   }
 
   .footer {
-    margin-top: 19%;
-    height: 100px;
+    margin-top: 10vh;
+
   }
 }
 
 @media (min-width: 1200px) {
+  .login {
+    margin-top: 10%;
+  }
+
   .contacts {
-    margin-top: 20px;
     font-size: large;
   }
   .footer {
-    margin-top: 16%;
-    height: 100px;
+    margin-top: 22vh;
   }
 }

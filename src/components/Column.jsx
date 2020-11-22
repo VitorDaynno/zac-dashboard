@@ -6,7 +6,7 @@ import M from 'materialize-css';
 import Task from './Task';
 
 function Column(props) {
-  const { title, filter, isRefresh } = props;
+  const { title, filter, isRefresh, setIsRefresh } = props;
 
   const history = useHistory();
   const [tasks, setTasks] = useState([]);
@@ -49,7 +49,14 @@ function Column(props) {
         <div className="card-content">
           <span className="card-title">{title}</span>
           {tasks.map((task) => (
-            <Task name={task.name} date={task.due} url={task.url}></Task>
+            <Task
+              key={task.id}
+              id={task.id}
+              name={task.name}
+              date={task.due}
+              url={task.url}
+              setIsRefresh={setIsRefresh}
+            />
           ))}
         </div>
       </div>

@@ -1,7 +1,6 @@
 body {
   background: url('../images/backgroud.jpg');
   background-size: 120%;
-  overflow-y: hidden;
   background-repeat: no-repeat;
 }
 

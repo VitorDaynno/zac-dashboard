@@ -15,7 +15,7 @@ function Task(props) {
   const failTask = async () => {
     try {
       const token = localStorage.getItem('token');
-      const url = `/tasks/${id}/fail`;
+      const url = `/api/tasks/${id}/fail`;
       const authorization = `Bearer ${token}`;
       const headers = { Authorization: authorization };
 
@@ -47,7 +47,7 @@ function Task(props) {
   const concludeTask = async () => {
     try {
       const token = localStorage.getItem('token');
-      const url = `/tasks/${id}/conclude`;
+      const url = `/api/tasks/${id}/conclude`;
       const authorization = `Bearer ${token}`;
       const headers = { Authorization: authorization };
 

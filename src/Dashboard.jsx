@@ -60,7 +60,7 @@ function Dashboard() {
       setSpinTrello(1);
 
       const token = localStorage.getItem('token');
-      const url = `/trello-crawler/integrate-cards`;
+      const url = `/api/trello-crawler/integrate-cards`;
       const authorization = `Bearer ${token}`;
       const headers = { Authorization: authorization };
 

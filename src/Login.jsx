@@ -38,7 +38,7 @@ function Login() {
         throw error;
       }
 
-      const url = `/users/auth`;
+      const url = `/api/users/auth`;
       const body = { email, password };
       const response = await axios.post(url, body);
       const { data } = response;

@@ -15,7 +15,7 @@ function Column(props) {
     async function getTasks(filter) {
       try {
         const token = localStorage.getItem('token');
-        const url = `/tasks${filter}`;
+        const url = `/api/tasks${filter}`;
         const authorization = `Bearer ${token}`;
         const headers = { Authorization: authorization };
 

@@ -1,32 +1,20 @@
-.action-card {
-  margin-top: 10px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-}
-
-.actions {
-  border-top-style: solid;
-  border-top-color: rgb(0, 0, 0, 0.3);
-  border-top-width: 1px;
-}
-
-.date-task {
-  margin-right: 10px;
-  color: rgb(0, 0, 0, 0.5);
+.conclude {
+    text-decoration: line-through;
 }
 
 .task {
-  border-radius: 2px;
-  border-width: 1px;
-  border-color: rgb(0, 0, 0, 0.3);
-  border-style: solid;
-  margin-bottom: 10px;
-  padding-left: 10px;
-  border-right-width: 3px;
-  border-bottom-width: 3px;
+    border-color:rgb(190, 187, 187);
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 3px;
 }
 
+.task-action {
+    margin-left: 10px
+}
 
-.trello-icon {
-  margin-top: 5px;
+.task-name {
+    cursor: pointer;
 }

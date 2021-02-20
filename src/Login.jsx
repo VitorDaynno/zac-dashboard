@@ -107,8 +107,8 @@ function Login() {
           </button>
         </div>
       </div>
-      <footer class="col s12 footer">
-        <div class="container center">
+      <footer className="col s12 footer">
+        <div className="container center">
           <div className="col s12 contacts">
             <span>Desenvolvido por:</span>
           </div>

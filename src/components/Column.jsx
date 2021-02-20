@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import M from 'materialize-css';
 
-import Task from './Task';
+import TaskCard from './TaskCard';
 
 function Column(props) {
   const { title, filter, isRefresh, setIsRefresh } = props;
@@ -49,7 +49,7 @@ function Column(props) {
         <div className="card-content">
           <span className="card-title">{title}</span>
           {tasks.map((task) => (
-            <Task
+            <TaskCard
               key={task.id}
               id={task.id}
               name={task.name}

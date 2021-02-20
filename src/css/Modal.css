@@ -1,0 +1,51 @@
+.custom-modal {
+    position: absolute;
+    border-width: 1px ;
+    border-style: solid;
+    border-color: rgb(204, 204, 204);
+    background: rgb(255, 255, 255);
+    overflow: auto;
+    border-radius: 4px;
+    outline: none;
+    padding: 20px;
+    inset: 100px;
+}
+
+.modal-button {
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.modal-buttons {
+    margin-top: 4%;
+}
+
+.modal-children {
+    margin-top: 20px;
+    min-height: 70%
+}
+
+@media (max-width: 768px) {
+    .custom-modal {
+        inset: 40px;
+    }
+    .modal-buttons {
+        margin-top: 10%;
+    }
+    .modal-children {
+        min-height: 77%
+    }
+}
+
+@media (min-width: 1200px) {
+    .custom-modal {
+        inset: 20%;
+        inset-block-start: 10%;
+    }
+    .modal-buttons {
+        margin-top: 3%;
+    }
+    .modal-children {
+        min-height: 77%
+    }
+}

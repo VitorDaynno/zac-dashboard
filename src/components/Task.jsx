@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FaTrello } from 'react-icons/fa';
 import { FiCheckCircle, FiXCircle } from 'react-icons/fi';
 import M from "materialize-css";
 import axios from 'axios';
 
-import { formatDate } from '../helpers/formatHelper';
+import CustomModal from './Modal';
+import { formatDate, formatTime, toDatetime } from '../helpers/formatHelper';
 
-function Task(props) {
-  const { id, setIsRefresh } = props;
-
+function TaskCard(props) {
+  const { id, name, date, url, isRoutine, isConclude, isFailed } = props;
   const history = useHistory();
+  const [modalIsOpen, setIsOpen] = useState(false);
 
   const failTask = async () => {
     try {
@@ -19,8 +20,7 @@ function Task(props) {
       const authorization = `Bearer ${token}`;
       const headers = { Authorization: authorization };
 
-      axios.post(url, {}, { headers });
-      setIsRefresh(Math.random());
+      await axios.post(url, {}, { headers });
       M.toast({ html: 'Tarefa atualizada com sucesso', classes: 'green' });
       } catch (error) {
         let messageUser = 'Um erro ocorreu';
@@ -30,6 +30,7 @@ function Task(props) {
           const { status } = response;
           if (status === 403) {
             messageUser = 'Você não possui acesso!';
+            history.push('/');
           }
           if (status === 409) {
             messageUser = 'A task já encontra-se concluída ou com falha!';
@@ -40,7 +41,6 @@ function Task(props) {
         }
 
         M.toast({ html: messageUser, classes: 'red' });
-        history.push('/');
       }
   };
 
@@ -51,8 +51,7 @@ function Task(props) {
       const authorization = `Bearer ${token}`;
       const headers = { Authorization: authorization };
 
-      axios.post(url, {}, { headers });
-      setIsRefresh(Math.random());
+      await axios.post(url, {}, { headers });
       M.toast({ html: 'Tarefa concluída com sucesso', classes: 'green' });
       } catch (error) {
         let messageUser = 'Um erro ocorreu';
@@ -62,6 +61,7 @@ function Task(props) {
           const { status } = response;
           if (status === 403) {
             messageUser = 'Você não possui acesso!';
+            history.push('/');
           }
           if (status === 409) {
             messageUser = 'A task já encontra-se concluída ou com falha!';
@@ -72,51 +72,98 @@ function Task(props) {
         }
 
         M.toast({ html: messageUser, classes: 'red' });
-        history.push('/');
       }
   }
 
-  const { name, date, url } = props;
+  const openModal = () => {
+    setIsOpen(true);
+  }
+
+  const closeModal = () => {
+    setIsOpen(false);
+  }
+
+  const datetime = typeof date === 'object'
+    ? date
+    : toDatetime(`${date.slice(0, 25)} +00`, 'E, d LLL yyyy HH:mm:ss x');
+
   return (
-    <div className="row task">
-      <div className="row">
-        {url ? (
-          <div>
-            <h6 className="truncate col s10">{name}</h6>
-            <a
-              href={url}
-              target="_blank"
-              className="black-text"
-              rel="noopener noreferrer"
-            >
-              <FaTrello className="col s2 trello-icon"/>
-            </a>
+    <div className={`task hoverable ${isFailed ? 'red white-text' : ''}`}>
+      <span
+        className={`truncate task-name ${isConclude ? 'conclude' : ''}`}
+        onClick={openModal}
+      >
+        {name}
+      </span>
+      <CustomModal
+        key={id}
+        title={'Detalhe'}
+        isVisible={modalIsOpen}
+        onConfirm={closeModal}
+        onClose={closeModal}
+      >
+        <div className="row">
+          <div className="input-field col s12">
+            <input
+              id="name"
+              type="text"
+              value={name}
+              readOnly={true}
+            />
+            <label className="active" htmlFor="name">Nome</label>
           </div>
-        ) : (
-          <div>
-            <h6 className="truncate col s10">{name}</h6>
+          <div className="input-field col s12 m6">
+            <input
+              id="date"
+              type="text"
+              value={formatDate(datetime)}
+              readOnly={true}
+            />
+            <label className="active" htmlFor="date">Data</label>
           </div>
-        )}
-        <div>
-          <span className="right date-task">{formatDate(date)}</span>
+          <div className="input-field col s12 m6">
+            <input
+              id="time"
+              type="text"
+              value={formatTime(datetime)}
+              readOnly={true}
+            />
+            <label className="active" htmlFor="time">Horário</label>
+          </div>
+          {!url ?
+            !isRoutine ? (
+              <div className="col s12 m6 right">
+                <FiCheckCircle
+                  size={20}
+                  className="right green-text task-action"
+                  onClick={concludeTask}
+                />
+                <FiXCircle
+                  size={22}
+                  className="right red-text task-action"
+                  onClick={failTask}
+                  disabled={isRoutine}
+                />
+                <label>Ações:</label>
+              </div>
+            ): null
+          : (
+            <div className="col s12 m6 right">
+              <a
+                href={url}
+                target="_blank"
+                className="blue-text right"
+                rel="noopener noreferrer"
+              >
+                <FaTrello size={20} />
+              </a>
+              <label>Ações:</label>
+            </div>
+          )}
         </div>
-      </div>
-      {!url ? (
-        <div className="actions">
-          <FiCheckCircle
-            size={20}
-            className="right green-text action-card"
-            onClick={concludeTask}
-          />
-          <FiXCircle
-            size={22}
-            className="right red-text action-card"
-            onClick={failTask}
-          />
-        </div>
-      ) : null}
+      </CustomModal>
     </div>
   );
 }
 
-export default Task;
+export default TaskCard;

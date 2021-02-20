@@ -1,0 +1,33 @@
+.column-day-time {
+  display: inline-flex;
+  margin-right: 20px;
+  width: 10%; 
+}
+
+.column-day-tasks {
+  border-style: outset;
+  border-width: 1px;
+  border-color: rgb(190, 187, 187);
+  width: 80%;
+  display: inline-flex;
+  min-height: 5vh;
+  vertical-align: middle;
+  flex-direction: column;
+}
+
+.schedule {
+  flex: 1;  
+  flex-direction: row;
+}
+
+@media (max-width: 768px) {
+  .column-day-tasks {
+    width: 80%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .column-day-tasks {
+    width: 83%;
+  }
+}

@@ -1,0 +1,53 @@
+{
+    "schedule": [
+        {
+            "id": 0,
+            "name": "Domingo",
+            "startHour": "02:00",
+            "finalHour": "02:00",
+            "weekDay": 0
+        },
+        {
+            "id": 1,
+            "name": "Segunda",
+            "startHour": "07:00",
+            "finalHour": "02:00",
+            "weekDay": 1
+        },
+        {
+            "id": 2,
+            "name": "Terça",
+            "startHour": "07:00",
+            "finalHour": "02:00",
+            "weekDay": 2
+        },
+        {
+            "id": 3,
+            "name": "Quarta",
+            "startHour": "07:00",
+            "finalHour": "02:00",
+            "weekDay": 3
+        }, 
+        {
+            "id": 4,
+            "name": "Quinta",
+            "startHour": "07:00",
+            "finalHour": "02:00",
+            "weekDay": 4
+        },
+        {
+            "id": 5,
+            "name": "Sexta",
+            "startHour": "07:00",
+            "finalHour": "02:00",
+            "weekDay": 5
+        },
+        {
+            "id": 6,
+            "name": "Sábado",
+            "startHour": "07:00",
+            "finalHour": "02:00",
+            "weekDay": 6
+        }
+    ]
+}

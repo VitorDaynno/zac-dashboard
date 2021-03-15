@@ -7,9 +7,11 @@ import {
   startOfDay,
   endOfDay,
   formatISO,
-  isBefore
+  isBefore,
+  isAfter,
+  isSameDay,
 } from 'date-fns';
-import { ptBR } from 'date-fns/locale';
+import { is, ptBR } from 'date-fns/locale';
 import { zonedTimeToUtc } from 'date-fns-tz';
 
 const locale = ptBR;
@@ -59,6 +61,12 @@ const datetimeToString = (datetime) => formatISO(datetime);
 const checkIsBefore = (firstDate, secondDate) =>
   isBefore(firstDate, secondDate);
 
+const checkIsAfter = (firstDate, secondDate) =>
+  isAfter(firstDate, secondDate);
+
+const checkIsSameDay = (firstDate, secondDate) =>
+  isSameDay(firstDate, secondDate);
+
 export {
   formatDatetime,
   formatTime,
@@ -71,4 +79,6 @@ export {
   datetimeToString,
   formatDate,
   checkIsBefore,
+  checkIsAfter,
+  checkIsSameDay
 };

@@ -13,7 +13,8 @@ import {
   getStartOfDay,
   getEndOfDay,
   datetimeToString,
-  getDayWeek
+  getDayWeek,
+  checkIsSameDay
 } from '../helpers/formatHelper';
 
 
@@ -103,6 +104,19 @@ function Column(props) {
 
     const availableRoutine = routines.map((routine) => {
       const date = toDatetime(routine.hour, 'HH:mm', initialHour);
+      const lastCreatedDate = toDatetime(
+        routine.lastCreatedDate.slice(0, 25),
+        'E, d LLL yyyy HH:mm:ss',
+        initialHour
+      );
+
+      const isBefore = checkIsBefore(initialHour, lastCreatedDate);
+      const isSameDay = checkIsSameDay(initialHour, lastCreatedDate);
+
+      if(isBefore || isSameDay) {
+        return null;
+      }
+
       const isSameHourTask = isSameHour(initialHour, date);
 
       const finalTaskHour = addTime(date, { minutes: routine.duration })

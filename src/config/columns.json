@@ -3,7 +3,7 @@
         {
             "id": 0,
             "name": "Domingo",
-            "startHour": "02:00",
+            "startHour": "07:00",
             "finalHour": "02:00",
             "weekDay": 0
         },
